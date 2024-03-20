@@ -2,7 +2,11 @@ import React from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import tw from 'twrnc';
 
-const LoginPage = () => {
+function LoginPage({ navigation }) {
+  function handleRegisterPress() {
+    navigation.navigate('Register');
+  }
+
   return (
     <View style={tw`flex flex-col justify-center items-center w-full h-5/6`}>
       <Text style={tw`text-center text-3xl w-3/4`}>Chào mừng trở lại</Text>
@@ -18,11 +22,11 @@ const LoginPage = () => {
         />
         <View style={tw`w-3/4`}>
           <Text style={tw`text-right`}>
-            Chưa có tài khoản? <Text style={tw`text-gray-500`}>Đăng ký</Text>
+            Chưa có tài khoản? <Text style={tw`text-gray-500`} onPress={handleRegisterPress}>Đăng ký</Text>
           </Text>
         </View>
         <TouchableOpacity style={tw`my-2 w-1/4 h-12 rounded-sm pl-2 bg-sky-500 mt-10`}>
-          <View style={tw`flex-row justify-center items-center w-full `}>
+          <View style={tw`flex-row justify-center items-center w-full h-full`}>
             <Text style={tw`text-white text-center`}>Đăng nhập</Text>
           </View>
         </TouchableOpacity>
