@@ -5,7 +5,7 @@ import tw from 'twrnc';
 const LoginPage = () => {
   return (
     <View style={tw`flex flex-col justify-center items-center w-full h-5/6`}>
-      <Text style={tw`text-center text-3xl font-montserrat w-3/4`}>Chào mừng trở lại</Text>
+      <Text style={tw`text-center text-3xl w-3/4`}>Chào mừng trở lại</Text>
       <View style={tw`my-2 justify-around items-center w-full`}>
         <TextInput
           placeholder="Tên đăng nhập"
@@ -22,7 +22,9 @@ const LoginPage = () => {
           </Text>
         </View>
         <TouchableOpacity style={tw`my-2 w-1/4 h-12 rounded-sm pl-2 bg-sky-500 mt-10`}>
-          <Text style={tw`text-white`}>Đăng nhập</Text>
+          <View style={tw`flex-row justify-center items-center w-full `}>
+            <Text style={tw`text-white text-center`}>Đăng nhập</Text>
+          </View>
         </TouchableOpacity>
       </View>
     </View>
