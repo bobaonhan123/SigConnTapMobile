@@ -4,6 +4,7 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import tw from 'twrnc';
 
 import { Login } from '../api/userAPI';
+import { storeDataToStorage } from '../tools/StorageTool';
 
 function LoginPage({ navigation }) {
   const [username, setUsername] = useState("");
@@ -21,12 +22,12 @@ function LoginPage({ navigation }) {
   function handleRegisterPress() {
     navigation.navigate('Register');
   }
-  
+
   async function handleLoginPress() {
     const response = await Login(username, password);
     console.log(response);
     if (response.status === 200) {
-      
+      await storeDataToStorage('access_token', response.data.token);
       navigation.navigate('Main');
     } else {
       alert(response);
@@ -55,7 +56,7 @@ function LoginPage({ navigation }) {
           </Text>
         </View>
         <TouchableOpacity style={tw`my-2 w-1/4 h-12 rounded-sm pl-2 bg-sky-500 mt-10`}
-        onPress={handleLoginPress}>
+          onPress={handleLoginPress}>
           <View style={tw`flex-row justify-center items-center w-full h-full`}>
             <Text style={tw`text-white text-center`}>Đăng nhập</Text>
           </View>

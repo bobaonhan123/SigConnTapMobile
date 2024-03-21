@@ -16,7 +16,7 @@ const Header = () => {
         <TouchableOpacity style={tw`m-0 h-full items-center justify-start`} onPress={handleNavigateToMain}>
           <View style={tw`ml-0 flex-row items-center justify-start`}>
             <Image source={logo} style={tw`h-3/4 w-32`} resizeMode="contain" />
-            <Image source={name} style={tw`h-full w-auto aspect-ratio-3 ml-0`} resizeMode="contain" />
+            <Image source={name} style={tw`h-full w-auto aspect-3 ml-0`} resizeMode="contain" />
           </View>
         </TouchableOpacity>
       </View>
