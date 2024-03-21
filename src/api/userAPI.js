@@ -13,3 +13,16 @@ export const Register = async (name, username, password, reEnter) => {
         return error;
     }
 }
+
+export const Login = async (username,password) => {
+    try {
+        const response = await http.post("/login/", {
+            username: username,
+            password: password
+        });
+        return response;
+    }
+    catch (error) {
+        return error;
+    }
+}

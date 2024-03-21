@@ -1,19 +1,10 @@
 import axios from "axios";
 
-const baseUrl = "http://192.168.1.5:8000";
+const baseUrl = "http://192.168.78.30:8000";
 export const http = axios.create({
   baseURL: baseUrl,
   headers: {
     "Content-Type": "application/json",
-  },
-});
-
-const serverBaseUrl = "http://127.0.0.1:8000";
-export const serverAxios = axios.create({
-  baseURL: serverBaseUrl,
-  headers: {
-    "Content-Type": "application/json",
-    "ngrok-skip-browser-warning": "122342",
   },
 });
 
