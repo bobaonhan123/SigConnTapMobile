@@ -5,6 +5,7 @@ import tw from 'twrnc';
 
 import { getDataFromStorage } from '../tools/StorageTool';
 import { getName } from '../api/userAPI';
+import DrawerBar from '../components/DrawerBar';
 
 function MainPage({ navigation }) {
     const [name, setName] = useState('');
@@ -24,10 +25,10 @@ function MainPage({ navigation }) {
         checkLogin();
     }, []);
     return (
-        <View style={tw`flex flex-col justify-center items-center w-full h-5/6`}>
+        <View style={tw`w-full h-full`}>
+            <DrawerBar navigation={navigation} />
+            <Text style={tw`text-3xl`}>{name}</Text>
             
-            <Text style={tw`text-center text-3xl w-3/4`}>{name}</Text>
-
         </View>
     );
 };

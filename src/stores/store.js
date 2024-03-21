@@ -1,5 +1,10 @@
 import { create } from 'zustand'
 
+export const useDrawerStore = create((set) => ({
+    isOpen: true,
+    toggle: () => set((state) => ({ isOpen: !state.isOpen })),
+}))
+
 export const useNamePopupStore = create((set) => ({
     isVisible: false,
     toggle: () => {
