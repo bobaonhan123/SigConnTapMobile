@@ -26,32 +26,38 @@ function LoginPage({ navigation }) {
   async function handleLoginPress() {
     const response = await Login(username, password);
     console.log(response);
-    if (response.status === 200) {
-      await storeDataToStorage('access_token', response.data.token);
-      navigation.navigate('Main');
-    } else {
-      alert(response);
+    try {
+      if (response.status === 200) {
+        await storeDataToStorage('access_token', response.data.token);
+        navigation.navigate('Main');
+      } else {
+        alert(response);
+      }
+    } catch (error) {
+      alert(error);
     }
   }
   return (
     <View style={tw`flex flex-col justify-center items-center w-full h-5/6`}>
-      <Text style={tw`text-center text-3xl w-3/4`}>Chào mừng trở lại</Text>
+      <Text style={tw`text-center text-3xl w-3/4 text-gray-600`}>Chào mừng trở lại</Text>
       <View style={tw`my-2 justify-around items-center w-full`}>
         <TextInput
           placeholder="Tên đăng nhập"
-          style={tw`my-2 w-3/4 h-12 border-2 rounded-md pl-2 bg-transparent`}
+          style={tw`my-2 w-3/4 h-12 border-2 rounded-md pl-2 bg-transparent text-gray-900`}
           defaultValue={username}
           onChangeText={handleUsername}
+          placeholderTextColor="gray"
         />
         <TextInput
           placeholder="Mật khẩu"
-          style={tw`my-2 w-3/4 h-12 border-2 rounded-md pl-2 bg-transparent`}
+          style={tw`my-2 w-3/4 h-12 border-2 rounded-md pl-2 bg-transparent text-gray-900`}
           secureTextEntry={true}
           defaultValue={password}
           onChangeText={handlePassword}
+          placeholderTextColor="gray"
         />
         <View style={tw`w-3/4`}>
-          <Text style={tw`text-right`}>
+          <Text style={tw`text-right text-gray-700`}>
             Chưa có tài khoản? <Text style={tw`text-gray-500`} onPress={handleRegisterPress}>Đăng ký</Text>
           </Text>
         </View>

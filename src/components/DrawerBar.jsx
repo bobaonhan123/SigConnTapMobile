@@ -1,6 +1,6 @@
-import { Text, View } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import tw from "twrnc";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { useDrawerStore } from "../stores/store";
 import { getName } from "../api/userAPI";
@@ -19,24 +19,35 @@ export default function DrawerBar({ navigation, style }) {
 
     useEffect(() => {
         const checkLogin = async () => {
-            const response = await getName();
-            if (response.status === 200) {
-                setName(response.data.username);
-            } else {
+            try {
+                const response = await getName();
+                if (response.status === 200) {
+                    setName(response.data.username);
+                } else {
+                    navigation.replace('Login');
+                }
+            }
+            catch (e) {
                 navigation.replace('Login');
             }
         };
         checkLogin();
-    }, []);
+    }, [isVisible]);
 
     return (
-        <View style={tw`flex-column fixed h-[87vh] z-20 bg-[#e0fffc] left-0 top-[10%] rounded-md
-        w-[80%] transition ${arr[isVisible]}`}>
+        <View style={tw`flex-column absolute h-[87vh] z-20 bg-[#e0fffc] left-0 top-[5%] rounded-md
+        w-[80%] ${arr[isVisible]}`}>
             <Text style={tw`absolute md:hidden text-[2rem] font-bold top-6 right-[-16px] text-blue-400`}
                 onPress={handleVisible}  >{'>'}</Text>
-            <Text style={tw`my-6 text-2xl text-center`}>
-                Xin chào <Text style={tw`font-bold`}>{name}</Text>
+            <Text style={tw`my-6 text-2xl text-center text-gray-800`}>
+                Xin chào <Text style={tw`font-bold text-gray-400`}>{name}</Text>
             </Text>
+            <TouchableOpacity
+                style={tw`mx-0 bg-blue-500 bg-opacity-40 py-3 px-4 rounded-r-2xl`}
+                onPress={() => { navigation.navigate('Main'); handleVisible() }}
+            >
+                <Text style={tw`text-blue-800 font-bold text-2xl`}>Trang chủ</Text>
+            </TouchableOpacity>
         </View>
     );
 }
