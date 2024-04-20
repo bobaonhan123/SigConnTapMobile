@@ -9,7 +9,7 @@ import tw from 'twrnc';
 
 export default function EditorPanel({ setKeyMapping, keyMapping }) {
     const [mapping, setMapping] = useState({
-        img: <Avatar />,
+        img: <Avatar setKeyMapping={setKeyMapping}/>,
         name: <Name />,
         slogan: <AboutMe />,
     });
