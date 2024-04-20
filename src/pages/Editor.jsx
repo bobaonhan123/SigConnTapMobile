@@ -2,6 +2,7 @@ import { useState } from "react";
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import tw from "twrnc";
 
+import { useReloadBoxes } from "../stores/store";
 import { useTagPopupStore, useProfile } from "../stores/store";
 import { imgBaseUrl } from "../configurations/AxiosCFG";
 import { editProfile } from "../api/profileAPI";
@@ -23,13 +24,14 @@ export default function Editor({ navigation }) {
         const newContact = { name: '<Nhập>', url: '' };
         addContact(newContact);
     };
-
+    const reload = useReloadBoxes((state) => state.setChanged)
     const handleSave = async () => {
         console.log(id);
         console.log(name);
         console.log(slogan);
         console.log(contact);
         await editProfile(id, name, slogan, img, contact);
+        reload();
     }
     return (
 
