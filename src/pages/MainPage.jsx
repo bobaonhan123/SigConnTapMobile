@@ -34,8 +34,8 @@ function MainPage({ navigation }) {
         <View style={tw`w-full h-[90%] mt-[10%]`}>
             
             <DrawerBar navigation={navigation} />
-            <View style={tw`flex-column items-center justify-center h-[84vh] w-full top-[9%]`}>
-                <ListProfilePage />
+            <View style={tw`flex-col items-center justify-center h-[84vh] w-full top-[9%]`}>
+                <ListProfilePage navigation={navigation}/>
             </View>
         </View>
     );

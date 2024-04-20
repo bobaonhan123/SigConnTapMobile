@@ -35,7 +35,7 @@ export default function DrawerBar({ navigation, style }) {
     }, [isVisible]);
 
     return (
-        <View style={tw`flex-column absolute h-[87vh] z-20 bg-[#e0fffc] left-0 top-[5%] rounded-md
+        <View style={tw`flex-col absolute h-[87vh] z-20 bg-[#e0fffc] left-0 top-[5%] rounded-md
         w-[80%] ${arr[isVisible]}`}>
             <Text style={tw`absolute md:hidden text-[2rem] font-bold top-6 right-[-16px] text-blue-400`}
                 onPress={handleVisible}  >{'>'}</Text>

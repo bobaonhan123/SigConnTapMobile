@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://192.168.1.5:8000";
+export const baseUrl = "http://192.168.1.2:8000";
 export const http = axios.create({
   baseURL: baseUrl,
   headers: {
@@ -8,7 +8,7 @@ export const http = axios.create({
   },
 });
 
-export const imgBaseUrl = "http://localhost:8001";
+export const imgBaseUrl = "http://192.168.1.2:8001";
 export const httpFile = axios.create({
   baseURL: imgBaseUrl,
   headers: {

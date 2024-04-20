@@ -4,19 +4,28 @@ import tw from 'twrnc';
 import { useState } from 'react'; // Import useState hook
 import { hostname } from '../configurations/location';
 
-import { http } from '../configurations/AxiosCFG';
-import { useReloadBoxes, useTagPopupStore } from '../stores/store';
+import { useReloadBoxes, useTagPopupStore, useProfile } from '../stores/store';
 import { getDataFromStorage } from '../tools/StorageTool';
+import { imgBaseUrl } from '../configurations/AxiosCFG';
+import { getProfile,deleteProfile } from '../api/profileAPI';
 
 export default function Box(props) {
   const { img, name, id } = props.data;
+  const navigation = props.navigation;
   var isSelected = props.isSelected; // Use useState hook to manage isSelected state
   const toggleWrite = useTagPopupStore((state) => state.toggle)
   const setUrl = useTagPopupStore((state) => state.setUrl)
   const setReloadBoxes = useReloadBoxes((state) => state.setChanged)
-
+  const updateState = useProfile((state) => state.updateState);
   const handleView = () => {
     Linking.openURL(`${hostname}/${id}`);
+  }
+
+  const handleEdit = async () => {
+    const response = await getProfile(id);
+    console.log(response.data);
+    updateState(response.data);
+    navigation.navigate('Editor');
   }
 
   // Define handleWrite function to set URL and toggle write
@@ -27,17 +36,8 @@ export default function Box(props) {
 
   // Define handleDelete function to delete the item
   const handleDelete = async () => {
-    try {
-      const token = await getDataFromStorage('access-token'); // Use AsyncStorage for token (assuming it's imported from AsyncStorage)
-      await http.delete(`/profile/delete/${id}/`, {
-        headers: {
-          Authorization: 'Token ' + token
-        }
-      });
-      setReloadBoxes(); // Call setReloadBoxes to reload boxes after deletion
-    } catch (error) {
-      console.error('Error deleting item: ', error);
-    }
+    const response = await deleteProfile(id);
+    setReloadBoxes();
   };
 
 
@@ -45,7 +45,7 @@ export default function Box(props) {
   return (
     <TouchableOpacity style={tw`h-96 bg-blue-200 my-6 rounded-3xl mx-2 w-[75%] px-0`} onPress={props.click}>
       <Image
-                source={{ uri: img }}
+                source={{ uri: imgBaseUrl+'/?filename='+img }}
                 style={[tw`w-full rounded-3xl`, { height: '75%' }]} // Remove resizeMode from inline style
                 resizeMode="cover" // Set resizeMode to "cover" here
             />
@@ -67,7 +67,7 @@ export default function Box(props) {
               <Text style={tw`text-white font-bold text-xl`}>Xem</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={[tw`text-white w-60% h-[20%] bg-gray-700 text-center rounded-full py-3`]} onPress={() => { }}>
+          <TouchableOpacity style={[tw`text-white w-60% h-[20%] bg-gray-700 text-center rounded-full py-3`]} onPress={handleEdit}>
             <View style={tw`flex-row items-center justify-center h-full`}>
               <Text style={tw`text-white font-bold text-xl`}>Sửa</Text>
             </View>

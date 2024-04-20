@@ -24,6 +24,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Header from './components/Header';
 import MainPage from './pages/MainPage';
+import Editor from './pages/Editor';
 
 
 const Stack = createNativeStackNavigator();
@@ -48,6 +49,11 @@ function Main(): React.JSX.Element {
           <Stack.Screen
             name="Register"
             component={RegisterPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Editor"
+            component={Editor}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
