@@ -6,6 +6,7 @@ import { useTagPopupStore, useProfile } from "../stores/store";
 import { imgBaseUrl } from "../configurations/AxiosCFG";
 import { editProfile } from "../api/profileAPI";
 import ContactElement from "../components/ContactElement";
+import EditorPanel from "../components/EditorPanel";
 
 export default function Editor({ navigation }) {
     const toggleWrite = useTagPopupStore((state) => state.toggle);
@@ -61,19 +62,20 @@ export default function Editor({ navigation }) {
                             <ContactElement key={index} data={item} onPress={() => setKeyMapping(index.toString())} />
                         ))}
                         <TouchableOpacity
-                            style={tw`bg-[#a8b8ff] py-4 my-1 text-lg text-center rounded-md mx-auto w-[98.5%]`}
+                            style={tw`bg-[#c3c4e2] py-4 my-1 flex justify-center 
+                            items-center text-lg text-center 
+                            rounded-md mx-auto w-[98.5%]`}
                             onPress={handleAdd}
                         >
-                            <Text style={tw`text-white`}>+</Text>
+                            <Text style={tw`text-gray-500 my-2`}>+</Text>
                         </TouchableOpacity>
                     </ScrollView>
                 </View>
-                <View style={tw`w-60% m-4 flex-col absolute`}>
+                { keyMapping!=='-1' && <View style={tw`w-90% h-full left-3% m-4 flex-col absolute z-20 rounded-md bg-white`}>
                     <View style={tw`w-full h-[85%]`}>
-                        {keyMapping !== '-1' && <EditPanel keyMapping={keyMapping} setKeyMapping={setKeyMapping} />}
+                        {keyMapping !== '-1' && <EditorPanel keyMapping={keyMapping} setKeyMapping={setKeyMapping} />}
                     </View>
-
-                </View>
+                </View>}
                 <TouchableOpacity
                     style={tw`bg-[#939cf1] text-white absolute bottom-2
                         left-1/3 py-2 px-4 rounded-full`}

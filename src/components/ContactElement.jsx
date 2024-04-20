@@ -7,10 +7,11 @@ export default function ContactElement(props) {
 
     return (
         <TouchableOpacity
-            style={tw`bg-[#ebebeb] py-4 my-1 text-lg text-center rounded-md mx-auto w-[98.5%]`}
+            style={tw`bg-[#ebebeb] py-4 my-1 flex justify-center items-center text-lg text-center rounded-md mx-auto w-[98.5%]`}
             onPress={props.onPress}
         >
-            <Text>{name}</Text>
+            <Text style={tw`font-semibold my-2`}
+            >{name}</Text>
         </TouchableOpacity>
     );
 }
