@@ -28,7 +28,7 @@ export default function EditorPanel({ setKeyMapping, keyMapping }) {
         <View style={tw`h-full w-full flex flex-col`}>
             <View style={tw`h-10% flex-row-reverse items-center pr-6`}>
                 <TouchableOpacity onPress={() => setKeyMapping('-1')}>
-                    <Text style={tw`text-3xl font-bold px-3`}>x</Text>
+                    <Text style={tw`text-3xl font-bold px-3 text-gray-700`}>x</Text>
                 </TouchableOpacity>
             </View>
             <ScrollView style={tw`h-90%`}>

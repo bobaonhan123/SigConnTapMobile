@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
 import tw from 'twrnc';
-import { useState } from 'react'; // Import useState hook
+import { useState,useEffect } from 'react'; // Import useState hook
+import NfcManager, { NfcEvents } from 'react-native-nfc-manager';
+
 import { hostname } from '../configurations/location';
 
 import { useReloadBoxes, useTagPopupStore, useProfile } from '../stores/store';
@@ -17,6 +19,20 @@ export default function Box(props) {
   const setUrl = useTagPopupStore((state) => state.setUrl)
   const setReloadBoxes = useReloadBoxes((state) => state.setChanged)
   const updateState = useProfile((state) => state.updateState);
+  const [hasNfc, setHasNFC ] = useState(null);
+  useEffect(() => {
+    const checkIsSupported = async () => {
+      const deviceIsSupported = await NfcManager.isSupported()
+
+      setHasNFC(deviceIsSupported)
+      if (deviceIsSupported) {
+        await NfcManager.start()
+      }
+    }
+
+    checkIsSupported()
+  }, [])
+
   const handleView = () => {
     Linking.openURL(`${hostname}/${id}`);
   }
@@ -31,7 +47,12 @@ export default function Box(props) {
   // Define handleWrite function to set URL and toggle write
   const handleWrite = () => {
     setUrl(`${hostname}/${id}`);
-    toggleWrite();
+    if(hasNfc) {
+      toggleWrite();
+    }
+    else {
+      alert("Thiết bị không hỗ trợ NFC")
+    }
   };
 
   // Define handleDelete function to delete the item

@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-
 import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert } from "react-native";
+import tw from "twrnc";
+
+import Box from '../components/Box';
 import { getAllProfiles, createProfile } from "../api/profileAPI";
 import { useReloadBoxes } from "../stores/store";
-import tw from "twrnc";
-import Box from '../components/Box';
+import TagWritter from "../components/TagWritter";
 
 export default function ListProfilePage({ navigation }) {
     const [option, setOption] = useState(-1);
     const [data, setData] = useState([]);
     const isReload = useReloadBoxes((state) => state.isChanged)
+
     useEffect(() => {
         console.log('fetching data');
         async function fetchData() {
@@ -31,6 +33,7 @@ export default function ListProfilePage({ navigation }) {
             onPress={handleCreate}><Text
             style={tw`font-bold`}
             >Tạo mới</Text></TouchableOpacity>
+            
             {data.map((item, index) => {
                 return (
                     <Box navigation={navigation} key={index} data={item} isSelected={index !== option} click={(e) => {
@@ -43,7 +46,7 @@ export default function ListProfilePage({ navigation }) {
                     }} />
                 )
             })}
-
+            
         </ScrollView>
     );
 }

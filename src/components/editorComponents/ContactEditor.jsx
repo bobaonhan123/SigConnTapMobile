@@ -25,16 +25,16 @@ export default function ContactEdit({ indexArr, setKeyMapping }) {
 
     return (
         <View style={tw`h-90% w-full p-4 pl-8`}>
-            <Text style={tw`text-4xl font-semibold mb-16`}>Thông tin</Text>
-            <Text style={tw`mb-2`}>Tiêu đề</Text>
+            <Text style={tw`text-4xl font-semibold mb-16 text-gray-500`}>Thông tin</Text>
+            <Text style={tw`mb-2 text-gray-500`}>Tiêu đề</Text>
             <TextInput
-                style={tw`mb-6 h-12 pl-4 font-semibold w-[80%] rounded-xl bg-[#cfefff]`}
+                style={tw`mb-6 h-12 text-gray-400 pl-4 font-semibold w-[80%] rounded-xl bg-[#cfefff]`}
                 value={name}
                 onChangeText={namechange}
             />
-            <Text style={tw`mb-2`}>Liên kết</Text>
+            <Text style={tw`mb-2 text-gray-500`}>Liên kết</Text>
             <TextInput
-                style={tw`mb-16 h-12 pl-4 font-semibold w-[80%] rounded-xl bg-[#cfefff]`}
+                style={tw`mb-16 h-12 pl-4 text-gray-400 font-semibold w-[80%] rounded-xl bg-[#cfefff]`}
                 value={url}
                 onChangeText={urlchange}
             />

@@ -7,8 +7,11 @@ import { getDataFromStorage, deleteDataFromStorage } from '../tools/StorageTool'
 import { getName } from '../api/userAPI';
 import DrawerBar from '../components/DrawerBar';
 import ListProfilePage from './ListProfilesPage';
+import { useTagPopupStore } from "../stores/store";
+import TagWritter from '../components/TagWritter';
 
 function MainPage({ navigation }) {
+    const isTagPopup = useTagPopupStore((state) => state.isVisible);
     const [name, setName] = useState('');
     const [option, setOption] = useState(-1);
     const checkLogin = async () => {
@@ -36,6 +39,7 @@ function MainPage({ navigation }) {
             <DrawerBar navigation={navigation} />
             <View style={tw`flex-col items-center justify-center h-[84vh] w-full top-[9%]`}>
                 <ListProfilePage navigation={navigation}/>
+                {isTagPopup && <TagWritter />}
             </View>
         </View>
     );

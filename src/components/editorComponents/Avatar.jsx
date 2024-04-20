@@ -53,12 +53,12 @@ export default function Avatar({setKeyMapping}) {
 
     return (
         <View style={tw`h-90% w-full p-4 pl-8`}>
-            <Text style={tw`text-4xl font-semibold`}>Upload ảnh</Text>
+            <Text style={tw`text-4xl font-semibold text-gray-500`}>Upload ảnh</Text>
             <TouchableOpacity
                 style={tw`mt-16 h-12 font-semibold w-64 h-64 rounded-xl bg-[#cfefff] items-center justify-center text-2xl`}
                 onPress={handleUpload}
             >
-                <Text>Chọn ảnh</Text>
+                <Text style={tw`text-gray-400`}>Chọn ảnh</Text>
             </TouchableOpacity>
         </View>
     );

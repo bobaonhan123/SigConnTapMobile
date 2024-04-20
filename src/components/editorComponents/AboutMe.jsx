@@ -13,9 +13,9 @@ export default function AboutMe() {
 
     return (
         <View style={tw`h-90% w-full p-4 pl-8`}>
-            <Text style={tw`text-4xl font-semibold`}>Slogan</Text>
+            <Text style={tw`text-4xl font-semibold text-gray-500`}>Slogan</Text>
             <TextInput
-                style={tw`mt-16 h-12 pl-4 font-semibold w-[80%] rounded-xl bg-[#cfefff]`}
+                style={tw`mt-16 h-12 pl-4 font-semibold w-[80%] text-gray-400 rounded-xl bg-[#cfefff]`}
                 value={slogan}
                 onChangeText={sloganChange}
             />

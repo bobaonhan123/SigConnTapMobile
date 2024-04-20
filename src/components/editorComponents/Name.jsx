@@ -13,9 +13,9 @@ export default function Name() {
 
     return (
         <View style={tw`h-90% w-full p-4 pl-8`}>
-            <Text style={tw`text-4xl font-semibold`}>Tên</Text>
+            <Text style={tw`text-4xl font-semibold text-gray-500`}>Tên</Text>
             <TextInput
-                style={tw`mt-16 h-12 pl-4 font-semibold w-[80%] rounded-xl bg-[#cfefff]`}
+                style={tw`mt-16 h-12 pl-4 text-gray-400 font-semibold w-[80%] rounded-xl bg-[#cfefff]`}
                 value={name}
                 onChangeText={nameChange}
             />
