@@ -12,7 +12,7 @@ const Header = () => {
         navigation.navigate('Main');
       };
     return (
-      <View style={tw`flex-row justify-start items-center bg-[#cfefff] h-9vh absolute top-2 left-2 right-2 rounded-2xl z-20 p-0`}>
+      <View style={tw`flex-row justify-start items-center bg-[#cfefff] h-9vh absolute top-0 left-0 right-0 z-20 p-0`}>
         <TouchableOpacity style={tw`m-0 h-full items-center justify-start`} onPress={handleNavigateToMain}>
           <View style={tw`ml-0 flex-row items-center justify-start`}>
             <Image source={logo} style={tw`h-3/4 w-32`} resizeMode="contain" />

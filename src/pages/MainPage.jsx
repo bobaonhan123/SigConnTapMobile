@@ -34,7 +34,7 @@ function MainPage({ navigation }) {
     };
     checkLogin();
     return (
-        <View style={tw`w-full h-[90%] mt-[10%]`}>
+        <View style={tw`w-full h-[100%] mt-[9%] bg-white`}>
             
             <DrawerBar navigation={navigation} />
             <View style={tw`flex-col items-center justify-center h-[84vh] w-full top-[9%]`}>
